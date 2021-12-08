@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 const { Perms } = require("../validations/Permissions");
+=======
+const { perms, Perms } = require("../validations/permissions");
+>>>>>>> parent of 3c06c58 (added event handler)
 const { Client } = require("discord.js");
 const { promisify } = require("util");
 const { glob } = require("glob");
 const PG = promisify(glob);
 const Ascii = require("ascii-table");
+<<<<<<< HEAD
+=======
+const { guildid } = require("./json/guildid.json");
+const { resourceUsage } = require("process");
+>>>>>>> parent of 3c06c58 (added event handler)
 
 /**
  * @param {Client} client
@@ -13,7 +22,7 @@ module.exports = async (client) => {
 
     CommandsArray = [];
 
-    (await PG(`${process.cwd()}/Commands/*/*.js`)).map(async (file) => {
+    (await PG(`${process.cwd()}/Commands.*/*.js`)).map(async (file) => {
         const command = require(file);
 
         if(!command.name)
@@ -32,7 +41,11 @@ module.exports = async (client) => {
         client.commands.set(command.name, command);
         CommandsArray.push(command);
 
+<<<<<<< HEAD
         await Table.addRow(command.name, "🔹SUCCESFULL:");
+=======
+        await Table.addRow(command.name, "SUCCESFUL:")
+>>>>>>> parent of 3c06c58 (added event handler)
     });
 
     console.log(Table.toString());
@@ -40,18 +53,18 @@ module.exports = async (client) => {
     // permissions check //
 
     client.on("ready", async () => {
-        const MainGuild = await client.guilds.cache.get("768109607091699732");
+        const MainGuild = await client.guilds.cache.get(guildid)
 
         MainGuild.commands.set(CommandsArray).then(async (command) => {
             const Roles = (commandName) => {
                 const comdPerms = CommandsArray.find((c) => c.name === commandName).permission;
-                if(!cmdPerms) return null;
+                if(!comdPerms) return null;
 
-                return MainGuild.roles.cache.filter((r) => r.permissions.has(cmdPerms));
+                return MainGuild.roles.cache.filter((r) => r.permissions.has(comdPerms));
             }
 
             const fullPermissions = command.reduce((accumulator, r) => {
-                const roles = Roles(r.name);
+                const roles= Roles(r.name);
                 if(!roles) return accumulator;
 
                 const permissions = roles.reduce((a, r) => {
@@ -60,7 +73,7 @@ module.exports = async (client) => {
 
                 return [...accumulator, {id: r.id, permissions}]
             }, []);
-            await MainGuild.commands.permissions.set({ fullPermissions });
+            await MainGuild.commands.permissions.set({ fullPermissions});
         });
     });
 }
