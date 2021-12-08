@@ -1,10 +1,9 @@
-const { Perms } = require("../validations/permissions");
+const { Perms } = require("../validations/Permissions");
 const { Client } = require("discord.js");
 const { promisify } = require("util");
 const { glob } = require("glob");
 const PG = promisify(glob);
 const Ascii = require("ascii-table");
-const { resourceUsage } = require("process");
 
 /**
  * @param {Client} client
@@ -18,22 +17,22 @@ module.exports = async (client) => {
         const command = require(file);
 
         if(!command.name)
-        return Table.addRow(file.split("/")[7], "FAILED", "Missing a name.")
+        return Table.addRow(file.split("/")[7], "🔸FAILED", "Missing a name.")
 
         if(!command.description)
-        return Table.addRow(command.name, "FAILED", "Missing a description.")
+        return Table.addRow(command.name, "🔸FAILED", "Missing a description.")
 
         if(command.permission) {
             if(Perms.includes(command.permission))
             command.defaultPermission = false;
             else
-            return Table.addRow(command.name, "FAILED", "Permission is invalid.")
+            return Table.addRow(command.name, "🔸FAILED", "Permission is invalid.")
         }
 
         client.commands.set(command.name, command);
         CommandsArray.push(command);
 
-        await Table.addRow(command.name, "SUCCESFULL:")
+        await Table.addRow(command.name, "🔹SUCCESFULL:");
     });
 
     console.log(Table.toString());
