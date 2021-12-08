@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 const { Perms } = require("../validations/Permissions");
+=======
+const { perms, Perms } = require("../validations/permissions");
+>>>>>>> parent of 3c06c58 (added event handler)
 =======
 const { perms, Perms } = require("../validations/permissions");
 >>>>>>> parent of 3c06c58 (added event handler)
@@ -9,7 +13,10 @@ const { glob } = require("glob");
 const PG = promisify(glob);
 const Ascii = require("ascii-table");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 3c06c58 (added event handler)
 const { guildid } = require("./json/guildid.json");
 const { resourceUsage } = require("process");
 >>>>>>> parent of 3c06c58 (added event handler)
@@ -42,7 +49,11 @@ module.exports = async (client) => {
         CommandsArray.push(command);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         await Table.addRow(command.name, "🔹SUCCESFULL:");
+=======
+        await Table.addRow(command.name, "SUCCESFUL:")
+>>>>>>> parent of 3c06c58 (added event handler)
 =======
         await Table.addRow(command.name, "SUCCESFUL:")
 >>>>>>> parent of 3c06c58 (added event handler)
