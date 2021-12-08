@@ -1,26 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 const { Perms } = require("../validations/Permissions");
-=======
-const { perms, Perms } = require("../validations/permissions");
->>>>>>> parent of 3c06c58 (added event handler)
-=======
-const { perms, Perms } = require("../validations/permissions");
->>>>>>> parent of 3c06c58 (added event handler)
 const { Client } = require("discord.js");
 const { promisify } = require("util");
 const { glob } = require("glob");
 const PG = promisify(glob);
 const Ascii = require("ascii-table");
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 3c06c58 (added event handler)
-const { guildid } = require("./json/guildid.json");
-const { resourceUsage } = require("process");
->>>>>>> parent of 3c06c58 (added event handler)
-
 /**
  * @param {Client} client
  */
@@ -48,15 +31,8 @@ module.exports = async (client) => {
         client.commands.set(command.name, command);
         CommandsArray.push(command);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         await Table.addRow(command.name, "🔹SUCCESFULL:");
-=======
-        await Table.addRow(command.name, "SUCCESFUL:")
->>>>>>> parent of 3c06c58 (added event handler)
-=======
-        await Table.addRow(command.name, "SUCCESFUL:")
->>>>>>> parent of 3c06c58 (added event handler)
+
     });
 
     console.log(Table.toString());
@@ -64,7 +40,7 @@ module.exports = async (client) => {
     // permissions check //
 
     client.on("ready", async () => {
-        const MainGuild = await client.guilds.cache.get(guildid)
+        const MainGuild = await client.guilds.cache.get("768109607091699732")
 
         MainGuild.commands.set(CommandsArray).then(async (command) => {
             const Roles = (commandName) => {
