@@ -2,15 +2,25 @@ const { Client, Collection } = require("discord.js");
 const client = new Client({ intents:  32767});
 const { token } = require("./config.json");
 client.commands = new Collection();
+const { prefix } = require("./config.json");
 
-require("./handlers/events")(client);
-require("./handlers/Commands")(client);
+require("./Handlers/events")(client);
+require("./Handlers/Commands")(client);
+require("./Handlers/Commands")(client);
 
-client.once("ready", () => { 
-  console.log("I am online!")
-  client.user.setActivity("Cryptomaten!", {type: "WATCHING"});
-  }); 
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
 
-  require("./handlers/commands")(client);
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'server') {
+		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+	} else if (commandName === 'user') {
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+	}
+});
+
 
   client.login(token);

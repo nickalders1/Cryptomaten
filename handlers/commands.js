@@ -15,11 +15,13 @@ module.exports = async (client) => {
     (await PG(`${process.cwd()}/Commands.*/*.js`)).map(async (file) => {
         const command = require(file);
 
-        if(!command.name)
+        if(!command.name) {
         return Table.addRow(file.split("/")[7], "🔸FAILED", "Missing a name.")
+        }
 
-        if(!command.description)
+        if(!command.description) {
         return Table.addRow(command.name, "🔸FAILED", "Missing a description.")
+        }
 
         if(command.permission) {
             if(Perms.includes(command.permission))
@@ -34,6 +36,7 @@ module.exports = async (client) => {
         await Table.addRow(command.name, "🔹SUCCESFULL:");
 
     });
+
 
     console.log(Table.toString());
 

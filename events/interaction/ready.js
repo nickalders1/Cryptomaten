@@ -9,7 +9,7 @@ module.exports ={
 
     execute(client){
         console.log("I'm online!")
-        client.user.setActivity("HELLO!", {type: "Cryptomaten"});
+        client.user.setActivity("Cryptomaten", {type: "WATCHING"});
 
     }
 }
