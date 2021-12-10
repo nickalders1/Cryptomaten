@@ -8,7 +8,7 @@ module.exports ={
  */
 
     execute(client){
-        console.log("✔I'm online!✔")
+        console.log(`I'm online! as: ${client.user.tag}!`)
         client.user.setActivity("Cryptomaten", {type: "WATCHING"});
 
     }

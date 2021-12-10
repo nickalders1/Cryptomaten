@@ -8,10 +8,17 @@ client.commands = new Collection();
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
+
 const commands = [{
-  name: 'ping',
-  description: 'Replies with Pong!'
-}]; 
+	name: 'ping',
+	description: 'Replies with Pong!'
+  }, {
+	name: 'server',
+	description: 'Replies with server info'
+  }, {
+	name: 'user',
+	description: 'Replies with user info'
+}];
 
 const rest = new REST({ version: '9' }).setToken(token);
 
@@ -31,15 +38,23 @@ const rest = new REST({ version: '9' }).setToken(token);
 })();
 
 
-
+// for event handler
 require("./Handlers/events")(client);
+//-------------------------------------------------------------------------------------------------------------
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
-  
-	if (interaction.commandName === 'ping') {
-	  await interaction.reply('Pong!');
+
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'server') {
+		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+	} else if (commandName === 'user') {
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
 	}
-  });
+});
+
 
   client.login(token);
