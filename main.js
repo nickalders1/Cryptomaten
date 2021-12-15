@@ -40,4 +40,8 @@ require("./Handlers/events")(client);
 //-------------------------------------------------------------------------------------------------------------
 
 
-  client.login(token);
+  client.login(token).then(() => {
+    console.log(`Client logged in as ` + client.user.tag)
+  }).catch((err) => {
+    console.log(err)
+  });

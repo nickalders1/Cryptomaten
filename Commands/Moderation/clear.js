@@ -22,6 +22,7 @@ module.exports = {
      * 
      * @param {CommandInteraction} interaction 
      */
+
     async execute(interaction) {
         const { channel, options } = interaction;
 
@@ -54,4 +55,5 @@ module.exports = {
             })
         }
     }
-}
+ }
+ 
