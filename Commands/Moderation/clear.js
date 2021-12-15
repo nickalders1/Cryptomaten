@@ -13,9 +13,9 @@ module.exports = {
         },
         {
             name: "target",
-            description: "Selects a target you have specified.",
+            description: "Select a target you have specified.",
             type: "USER",
-            required: "FALSE"
+            required: false
         }
     ],
     /**
@@ -34,7 +34,7 @@ module.exports = {
         const Response = new MessageEmbed()
         .setColor("LUMINOUS_VIVID_PINK");
         
-        if(target) {
+        if(Target) {
             let i = 0;
             const filtered = [];
             (await Messages).filter((m) => {
@@ -45,12 +45,12 @@ module.exports = {
             })
 
             await channel.bulkDelete(filtered, true).then(messages => {
-                Response.setDescription(`🧹 Cleared ${message.size} from ${Target}.`);
+                Response.setDescription(`🧹 Cleared ${messages.size} from ${Target}.`);
                 interaction.reply({embeds: [Response]});
             })
         } else {
             await channel.bulkDelete(Amount, true).then(messages => {
-                Response.setDescription(`🧹 Cleared ${message.size} from this channel.`);
+                Response.setDescription(`🧹 Cleared ${messages.size} from this channel.`);
                 interaction.reply({embeds: [Response]});
             })
         }
