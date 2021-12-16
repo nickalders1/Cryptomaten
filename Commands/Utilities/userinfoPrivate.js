@@ -2,7 +2,7 @@ const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
 const { execute } = require("../../events/ready");
 
 module.exports = {
-    name: "userinfo",
+    name: "userinfoPrivate",
     type: "USER",
     Permission: "ADMINISTRATOR",
     /**
@@ -21,6 +21,6 @@ module.exports = {
         .addField("Member Since", `<t:${parseInt(target.joinedTimestamp / 1000)}:R>`, true)
         .addField("Discord User Since", `<t:${parseInt(target.user.createdTimestamp / 1000)}:R>`, true)
 
-        interaction.reply({embeds: [Response], ephemeral: false})
+        interaction.reply({embeds: [Response], ephemeral: true})
     }
 }
