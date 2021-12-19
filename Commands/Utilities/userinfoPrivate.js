@@ -1,5 +1,4 @@
 const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
-const { execute } = require("../../events/ready");
 
 module.exports = {
     name: "userinfoPrivate",
