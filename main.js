@@ -1,8 +1,9 @@
 const { guildId } = require("./config.json");
 const { clientId } = require("./config.json");
 const { Client, Collection, Intents } = require("discord.js");
-const client = new Client({intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({intents: 32767});
 const { token } = require("./config.json");
+
 client.commands = new Collection();
 
 const { REST } = require('@discordjs/rest');
@@ -27,7 +28,6 @@ const rest = new REST({ version: '9' }).setToken(token);
     console.error(error);
   }
 })();
-
 
 
 // For command handler
