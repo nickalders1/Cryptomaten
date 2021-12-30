@@ -1,13 +1,14 @@
 {
-"clientIdCryptomaten": "885206086800539698",
+"clientIdMaten": "885206086800539698",
 "clientId": "809414143240831027",
 "guildId": "768109607091699732",
-<<<<<<< Updated upstream
-"tokenCryptomaten" : "ODg1MjA2MDg2ODAwNTM5Njk4.YTjqaQ.48ugw4vkxk9LQ557rqHQE3hRH7Y",
-"token": "ODA5NDE0MTQzMjQwODMxMDI3.YCUvqQ.oRvfXs1EwEgHzBTFrcsLTFfKxzE"
-=======
-"tokenCryptoKenners": "ODA5NDE0MTQzMjQwODMxMDI3.YCUvqQ.oRvfXs1EwEgHzBTFrcsLTFfKxzE",
-"token" : "ODg1MjA2MDg2ODAwNTM5Njk4.YTjqaQ.48ugw4vkxk9LQ557rqHQE3hRH7Y",
-"prefix" : "!"
->>>>>>> Stashed changes
+"tokenMaten": "ODg1MjA2MDg2ODAwNTM5Njk4.YTjqaQ.48ugw4vkxk9LQ557rqHQE3hRH7Y",
+"token": "ODA5NDE0MTQzMjQwODMxMDI3.YCUvqQ.oRvfXs1EwEgHzBTFrcsLTFfKxzE",
+"Database": "mongodb+srv://nickalders:papaenmama@cryptomaten.vdlro.mongodb.net/Cryptomaten?retryWrites=true&w=majority",
+
+
+"EVERYONEID": "768109607091699732",
+"PARENTID": "922518490122944522",
+"OPENTICKET": "922518518958792778",
+"TRANSCRIPTID": "922518545336787054"
 }

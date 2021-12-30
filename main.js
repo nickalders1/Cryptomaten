@@ -1,7 +1,7 @@
 const { guildId } = require("./config.json");
 const { clientId } = require("./config.json");
 const { Client, Collection, Intents } = require("discord.js");
-const client = new Client({intents: 32767});
+const client = new Client({ intents: 32767 });
 const { token } = require("./config.json");
 
 client.commands = new Collection();
@@ -40,8 +40,12 @@ require("./Handlers/events")(client);
 //-------------------------------------------------------------------------------------------------------------
 
 
-  client.login(token).then(() => {
-    console.log(`Client logged in as ` + client.user.tag)
-  }).catch((err) => {
-    console.log(err)
-  });
+client.login(token).then(() => {
+  console.log(`Client logged in as ` + client.user.tag)
+}).catch((err) => {
+  console.log(err)
+});
+
+module.exports = {
+  client
+}
