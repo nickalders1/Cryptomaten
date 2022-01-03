@@ -17,8 +17,7 @@ module.exports = {
             guild.name + " | Ticket System",
             guild.iconURL({ dynamic: true })
         )
-        .setDescription("Open een ticket voor 1 van de redenen op de knoppen"
-        )
+        .setDescription("Open een ticket voor 1 van de redenen op de knoppen")
         .setColor("#36393f");
 
         const Buttons = new MessageActionRow();
