@@ -32,11 +32,11 @@ const rest = new REST({ version: '9' }).setToken(token);
 
 // For command handler
 client.commands = new Collection()
-require("./Handlers/Commands")(client);
+require("./handlers/Commands")(client);
 //-------------------------------------------------------------------------------------------------------------
 
 // For event handler
-require("./Handlers/events")(client);
+require("./handlers/Events")(client);
 //-------------------------------------------------------------------------------------------------------------
 
 
