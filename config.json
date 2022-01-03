@@ -1,9 +1,7 @@
 {
-"clientIdMaten": "885206086800539698",
-"clientId": "809414143240831027",
+"clientId": "885206086800539698",
 "guildId": "768109607091699732",
-"tokenMaten": "ODg1MjA2MDg2ODAwNTM5Njk4.YTjqaQ.48ugw4vkxk9LQ557rqHQE3hRH7Y",
-"token": "ODA5NDE0MTQzMjQwODMxMDI3.YCUvqQ.oRvfXs1EwEgHzBTFrcsLTFfKxzE",
+"token": "ODg1MjA2MDg2ODAwNTM5Njk4.YTjqaQ.48ugw4vkxk9LQ557rqHQE3hRH7Y",
 "Database": "mongodb+srv://nickalders:papaenmama@cryptomaten.vdlro.mongodb.net/Cryptomaten?retryWrites=true&w=majority",
 
 
