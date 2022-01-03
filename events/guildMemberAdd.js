@@ -1,6 +1,6 @@
 const { Client, Guild, GuildMember } = require("discord.js");
 const mongoose = require("mongoose");
-const DB = require("../schemas/guildMembersAdd");
+const DB = require("../schemas/GuildMembersAdd");
 
 module.exports = {
     name: "memberBan",
