@@ -34,9 +34,13 @@ module.exports = {
         });
         await DB.updateOne({ChannelID: channel.id}, {locked: true});
         Embed.setDescription("🔒 This ticket is now locked for reviewing.");
-        channel.permissionOverwrites.edit(docs.MemberID, {
+
+        docs.MembersID.forEach((m) => {
+        channel.permissionOverwrites.edit((m), {
             SEND_MESSAGES: false,
         });
+    });
+
         return interaction.reply({ embeds: [Embed] });
         break;
         case "deblokeer":
@@ -47,9 +51,13 @@ module.exports = {
     });
     await DB.updateOne({ChannelID: channel.id}, {locked: false});
     Embed.setDescription("🔓 This ticket is now unlocked.");
-    channel.permissionOverwrites.edit(docs.MemberID, {
-        SEND_MESSAGES: true,
+
+    docs.MembersID.forEach((m) => {
+        channel.permissionOverwrites.edit((m), {
+            SEND_MESSAGES: true,
+        });
     });
+
     return interaction.reply({ embeds: [Embed] });
     break;
     case "sluiten":
