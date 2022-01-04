@@ -42,11 +42,11 @@ module.exports = {
             });
 
             const Embed = new MessageEmbed()
-            .setAuthor(`${guild.name} | Ticket: ${ID}`,
+            .setAuthor({text: `${guild.name} | Ticket: ${ID}`, icon:
             guild.iconURL({ dynamic: true })
-            )
+        })
             .setDescription("een moment geduld a.u.b. een team lid zal spoedig bij u zijn.")
-            .setFooter("De knoppen hier beneden zijn staff only knoppen.")
+            .setFooter({text: "De knoppen hier beneden zijn staff only knoppen."})
     
             const Buttons = new MessageActionRow();
             Buttons.addComponents(
