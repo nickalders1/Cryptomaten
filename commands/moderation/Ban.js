@@ -3,13 +3,13 @@ const { model } = require("mongoose");
 const DB = require("../../schemas/AFKSystem");
 
 module.exports = {
-    name: "kick",
-    description: "kick's a specified member in the server.",
-    Permission: "kick_MEMBERS",
+    name: "ban",
+    description: "ban's a specified member in the server.",
+    Permission: "ban_MEMBERS",
     options: [
         {
         name: "member",
-        description: "Select a user to kick.",
+        description: "Select a user to ban.",
         type: "USER",
         required: true
         },
@@ -34,12 +34,12 @@ module.exports = {
 
         const Embed = new MessageEmbed()
         .setColor("GREEN")
-        .setDescription(`🦵 | ${Member} Has been kicked.\n**Reason** ${Reason}.`)
+        .setDescription(`🦵 | ${Member} Has been baned.\n**Reason** ${Reason}.`)
         .setFooter({text: `He wasn't worth it to bee part of ${interaction.guild.name} and **never** come back!`});
 
 
  
-                Member.kick();
+                Member.ban();
 
                 interaction.reply({embeds: [Embed], ephemeral: true});
             
