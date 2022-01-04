@@ -33,12 +33,12 @@ module.exports = {
         }).then(async(channel) => {
             await DB.create({
                 GuildID: guild.id,
-                MemberID: member.id,
+                MembersID: member.id,
                 TicketID: ID,
                 ChannelID: channel.id,
                 Closed: false,
                 Locked: false,
-                type: customId,
+                Type: customId,
             });
 
             const Embed = new MessageEmbed()

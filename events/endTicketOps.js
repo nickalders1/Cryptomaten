@@ -64,14 +64,10 @@ module.exports = {
     })
     await DB.updateOne({ChannelID: channel.id}, {Closed: true});
 
-    const MEMBER = guild.members.cache.get(docs.MemberID);
     const Message = await guild.channels.cache.get(TRANSCRIPTID).send ({
         embeds: [
-            Embed.setAuthor(
-                MEMBER.user.tag, 
-                MEMBER.user.displayAvatarURL({dynamic: true})
-            ).setTitle(`Transcript Type: ${docs.type}\nID: ${docs.TicketID}`),
-                 ],
+            Embed.setTitle(`Transcript Type: ${docs.Type}\nID: ${docs.TicketID}`),
+        ],
                  files: [attachment],
              });
 

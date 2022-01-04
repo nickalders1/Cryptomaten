@@ -1,48 +1,113 @@
-const {MessageEmbed, CommandInteraction, MessageActionRow, MessageButton} = require("discord.js");
-const { OPENTICKET } = require("../../config.json");
+const { MessageEmbed, CommandInteraction} = require("discord.js");
+const DB = require("../../schemas/Ticket");
 
 module.exports = {
     name: "ticket",
-    description: "setup your ticket message.",
+    description: "Ticket Actions",
     Permission: "ADMINISTRATOR",
+    options: [
+        {
+            name: "action",
+            type: "STRING",
+            description: "Add or remove a member from this ticket",
+            require: true,
+            choices: [
+                {name: "Add", value: "add"},
+                {name: "Remove", value: "remove"},
+            ],
+        },
+        {
+            name: "member",
+            description: "select a member",
+            type: "USER",
+            require: true,
+        },
+    ],
     /**
      * 
      * @param {CommandInteraction} interaction 
      */
     async execute(interaction) {
-        const { guild } = interaction;
+        const {guildId, options, channel} = interaction;
 
-        const Embed = new MessageEmbed()
-        .setAuthor(
-            guild.name + " | Ticket System",
-            guild.iconURL({ dynamic: true })
-        )
-        .setDescription("Open een ticket voor 1 van de redenen op de knoppen")
-        .setColor("#36393f");
+        const Action = options.getString("action");
+        const Member = options.getMember("member");
 
-        const Buttons = new MessageActionRow();
-        Buttons.addComponents(
-            new MessageButton()
-        .setCustomId("junioren")
-        .setLabel("Junioren")
-        .setStyle("PRIMARY")
-        .setEmoji("📜"),
-        new MessageButton()
-        .setCustomId("senioren")
-        .setLabel("Senioren")
-        .setStyle("SECONDARY")
-        .setEmoji("📜"),
-        new MessageButton()
-        .setCustomId("anders")
-        .setLabel("Anders")
-        .setStyle("SUCCESS")
-        .setEmoji("🚨")
-        );
+        const Embed = new MessageEmbed();
 
-        await guild.channels.cache.get(OPENTICKET)
-        .send({ embeds: [Embed], components: [Buttons] });
+        switch(Action) {
+            case "add":
+                DB.findOne({GuildID: guildId, ChannelID: channel.id}, 
+                    async (err, docs) => {
+                    if (err) throw err;
+                    if (!docs)
+                    return interaction.reply({embeds: [Embed
+                            .setColor("RED")
+                            .setDescription("⛔ | This channel is not tied with a ticket."
+                        ),
+                       ],
+                       ephemeral: true,
+                     });
+                     if (docs.MembersID.includes(Member.id))
+                     return interaction.reply({embeds: [Embed
+                        .setColor("RED")
+                        .setDescription("⛔ | This member is already added to this ticket."
+                    ),
+                   ],
+                   ephemeral: true,
+                 });
+                 docs.MembersID.push(Member.id);
 
-        interaction.reply({ content: "Done", ephemeral: true});
+                 channel.permissionOverwrites.edit(Member.id, {
+                     SEND_MESSAGES: true,
+                     VIEW_CHANNEL: true,
+                     READ_MESSAGE_HISTORY: true,
+                 });
 
+                 interaction.reply({embeds: [Embed
+                    .setColor("GREEN")
+                    .setDescription(`✅ | ${Member} has been added to this ticket.`),
+                ],
+            });
+            docs.save();
+            }
+         );
+                break;
+            case "remove":
+                DB.findOne({GuildID: guildId, ChannelID: channel.id}, 
+                    async (err, docs) => {
+                    if (err) throw err;
+                    if (!docs)
+                    return interaction.reply({embeds: [Embed
+                            .setColor("RED")
+                            .setDescription("⛔ | This channel is not tied with a ticket."
+                        ),
+                       ],
+                       ephemeral: true,
+                     });
+                     if (!docs.MembersID.includes(Member.id))
+                     return interaction.reply({embeds: [Embed
+                        .setColor("RED")
+                        .setDescription("⛔ | This member is not in this ticket."
+                    ),
+                   ],
+                   ephemeral: true,
+                 });
+                 docs.MembersID.remove(Member.id);
+
+                 channel.permissionOverwrites.edit(Member.id, {
+                     VIEW_CHANNEL: false,
+                 });
+
+                 interaction.reply({embeds: [Embed
+                    .setColor("GREEN")
+                    .setDescription(`✅ | ${Member} has been removed from this ticket.`),
+                ],
+            });
+            docs.save ();
+            }
+         );
+                break;
+        }
     },
 };
