@@ -1,9 +1,9 @@
 {
-"clientId": "810612503641849868",
-"clientIdTest1": "809414143240831027",
+"clientIdTest2": "810612503641849868",
+"clientId": "809414143240831027",
 "guildId": "768109607091699732",
-"token": "ODEwNjEyNTAzNjQxODQ5ODY4.YCmLuQ.QGspNVBAmGdRW65dCPb0pbLalL0",
-"tokenTest1": "ODA5NDE0MTQzMjQwODMxMDI3.YCUvqQ.oRvfXs1EwEgHzBTFrcsLTFfKxzE",
+"tokenTest2": "ODEwNjEyNTAzNjQxODQ5ODY4.YCmLuQ.QGspNVBAmGdRW65dCPb0pbLalL0",
+"token": "ODA5NDE0MTQzMjQwODMxMDI3.YCUvqQ.oRvfXs1EwEgHzBTFrcsLTFfKxzE",
 "Database": "mongodb+srv://nickalders:papaenmama@cryptomaten.vdlro.mongodb.net/Cryptomaten?retryWrites=true&w=majority",
 
 

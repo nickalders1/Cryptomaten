@@ -3,7 +3,7 @@ const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "userinfo",
     type: "USER",
-    Permission: "ADMINISTRATOR",
+    Permission: "MANAGE_MESSAGES",
     /**
      * 
      * @param {ContextMenuInteraction} interaction 
@@ -13,7 +13,7 @@ module.exports = {
 
         const Response = new MessageEmbed()
         .setColor("AQUA")
-        .setAuthor({text: target.user.tag,icon: target.user.avatarURL({ dynamic: true, size: 512})})
+        .setAuthor(target.user.tag, target.user.avatarURL({ dynamic: true, size: 512}))
         .setThumbnail(target.user.avatarURL({ dynamic: true, size: 512}))
         .addField("ID", `${target.user.id}`)
         .addField("Roles", `${target.roles.cache.map(r => r).join (" ").replace("@everyone", "") || "None"}`)

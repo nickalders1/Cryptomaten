@@ -1,15 +1,25 @@
-const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
+const { MessageEmbed, CommandInteraction } = require("discord.js");
 
 module.exports = {
-    name: "userinfoPrivate",
-    type: "USER",
+    name: "userinfocommand",
+    description: "get a specified members information.",
     Permission: "MANAGE_MESSAGES",
+    options: [
+        {
+        name: "member",
+        description: "select a user to get their information.",
+        type: "USER",
+        required: true
+        }
+    ],
     /**
      * 
-     * @param {ContextMenuInteraction} interaction 
+     * @param {CommandInteraction} interaction 
      */
     async execute(interaction) {
-        const target = await interaction.guild.members.fetch(interaction.targetId);
+        const {options} = interaction;
+        const Member = options.getMember("member");
+        const target = await interaction.guild.members.fetch(Member.id);
 
         const Response = new MessageEmbed()
         .setColor("AQUA")
@@ -20,6 +30,6 @@ module.exports = {
         .addField("Member Since", `<t:${parseInt(target.joinedTimestamp / 1000)}:R>`, true)
         .addField("Discord User Since", `<t:${parseInt(target.user.createdTimestamp / 1000)}:R>`, true)
 
-        interaction.reply({embeds: [Response], ephemeral: true})
+        interaction.reply({embeds: [Response], ephemeral: false})
     }
 }

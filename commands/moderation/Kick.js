@@ -5,7 +5,7 @@ const DB = require("../../schemas/AFKSystem");
 module.exports = {
     name: "kick",
     description: "kick's a specified member in the server.",
-    Permission: "kick_MEMBERS",
+    Permission: "KICK_MEMBERS",
     options: [
         {
         name: "member",

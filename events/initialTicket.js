@@ -42,9 +42,9 @@ module.exports = {
             });
 
             const Embed = new MessageEmbed()
-            .setAuthor({text: `${guild.name} | Ticket: ${ID}`, icon:
+            .setAuthor(`${guild.name} | Ticket: ${ID}`,
             guild.iconURL({ dynamic: true })
-        })
+        )
             .setDescription("een moment geduld a.u.b. een team lid zal spoedig bij u zijn.")
             .setFooter({text: "De knoppen hier beneden zijn staff only knoppen."})
     
@@ -80,7 +80,7 @@ module.exports = {
             });
     
         interaction.reply({content: `${member} your ticket has been created: ${channel}`,
-        ephemeral: true,
+        ephemeral: true 
             });
         });
     },

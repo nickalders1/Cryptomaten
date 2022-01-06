@@ -28,9 +28,11 @@ module.exports = {
      */
     async execute(interaction) {
         const { guild, options, user, createdTimestamp } = interaction;
+        const User = user.userName;
+        const Avatar = user.displayAvatarURL({dynamic: true});
 
         const Embed = new MessageEmbed()
-        .setAuthor(user.tag, user.displayAvatarURL({dynamic: true}));
+        .setAuthor({text: `${User}`, icon: "icon_url"})
 
         const afkStatus = options.getString("status");
 

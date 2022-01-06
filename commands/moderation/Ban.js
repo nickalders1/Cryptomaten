@@ -5,7 +5,7 @@ const DB = require("../../schemas/AFKSystem");
 module.exports = {
     name: "ban",
     description: "ban's a specified member in the server.",
-    Permission: "ban_MEMBERS",
+    Permission: "BAN_MEMBERS",
     options: [
         {
         name: "member",
